@@ -1,7 +1,5 @@
 public class SellService implements IPay, IGetDiscount{
-
 private Inventory inventory;
-
 public SellService(Inventory inventory){
     this.inventory =inventory;
 }
