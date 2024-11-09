@@ -14,5 +14,6 @@ public class MotoAdapter implements VehicleAdapter {
     @Override
     public void drive() {
         moto.assemble();
+        System.out.println("Driving " + moto.toString());
     }
 }

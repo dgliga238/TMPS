@@ -20,4 +20,5 @@ public class Car implements Vehicle {
     public String toString() {
         return category + " " + model;
     }
+
 }

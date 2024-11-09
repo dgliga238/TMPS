@@ -1,6 +1,9 @@
 package client;
 
+import adapters.CarAdapter;
+import decorators.GpsDecorator;
 import domain.Vehicle;
+import domain.VehicleAdapter;
 import domain.VehicleRegistry;
 import facade.VehicleCreationFacade;
 import factory.VehicleCategoryFactory;
@@ -11,29 +14,20 @@ import models.Truck;
 // Main.java (Client)
 public class Main {
     public static void main(String[] args) {
-        // Instantiate the VehicleCreationFacade to simplify vehicle creation
+
+        Car myCar = new Car("Toyota Corolla");
+        VehicleAdapter carAdapter = new CarAdapter(myCar);
+        carAdapter.drive();
+
+        Vehicle car = new Car("Lexus");
+        Vehicle decoratedCar = new GpsDecorator(car);
+        decoratedCar.assemble();
+
         VehicleCreationFacade vehicleFacade = new VehicleCreationFacade();
 
-        // Create different types of vehicles in various categories using the facade
         Vehicle economyCar = vehicleFacade.createEconomyCar();
-        Vehicle standardTruck = vehicleFacade.createStandardTruck();
-        Vehicle luxuryMotorcycle = vehicleFacade.createLuxuryMotorcycle();
-
-        // Assemble the vehicles
-        System.out.println("Assembling vehicles:");
-        economyCar.assemble();         // Output: Assembling a Car (Economy)
-        standardTruck.assemble();      // Output: Assembling a Truck (Standard)
-        luxuryMotorcycle.assemble();   // Output: Assembling a Motorcycle (Luxury)
-
-        // Additional examples
-        Vehicle luxuryCar = vehicleFacade.createLuxuryCar();
-        Vehicle economyTruck = vehicleFacade.createEconomyTruck();
-        Vehicle standardMotorcycle = vehicleFacade.createStandardMotorcycle();
-
-        // Assemble additional vehicles
-        System.out.println("\nAssembling additional vehicles:");
-        luxuryCar.assemble();          // Output: Assembling a Car (Luxury)
-        economyTruck.assemble();       // Output: Assembling a Truck (Economy)
-        standardMotorcycle.assemble(); // Output: Assembling a Motorcycle (Standard)
+        Vehicle luxuryTruck = vehicleFacade.createLuxuryTruck();
+        economyCar.assemble();
+        luxuryTruck.assemble();
     }
 }

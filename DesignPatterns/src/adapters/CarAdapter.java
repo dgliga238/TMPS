@@ -14,5 +14,7 @@ public class CarAdapter implements VehicleAdapter {
     @Override
     public void drive() {
         car.assemble();
+        System.out.println("Driving " + car.toString());
     }
+
 }
