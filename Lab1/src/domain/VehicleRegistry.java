@@ -1,5 +1,7 @@
 package domain;
 
+import models.Truck;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,5 +21,7 @@ public class VehicleRegistry {
     public Vehicle getVehicle(String name) {
         return registry.get(name);
     }
+
+
 }
 
