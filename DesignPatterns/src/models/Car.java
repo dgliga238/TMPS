@@ -15,18 +15,10 @@ public class Car implements Vehicle {
         System.out.println("Assembling a " + category + " Car.");
     }
 
-    @Override
-    public String getModel() {
-        return model;
-    }
-
-    @Override
-    public String getCategory() {
-        return category;
-    }
 
     @Override
     public String toString() {
         return category + " " + model;
     }
+
 }
