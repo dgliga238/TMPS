@@ -38,12 +38,42 @@ The goal is to make relationships between components more simple, making the sys
 For adding more functionalities using structural patterns, I have chosen to use adapter pattern. 
 Firstly, to achieve the structure of this pattern, I have created the interface `VehicleAdapter`, which has a simple method drive(). It is used to make abstraction of the type of car which will be driven.
 ```java
-public interface VehicleAdapter {
-    void drive();
+public interface Command {
+    void execute();
 }
 ```
-Further, I have implemented concrete adapters: `CarAdapter`, `MotoAdapter` and `TruckAdapter`. For each type of vehicle , this drive() method was implemented in in the correspponding adapter class. 
-In this way the client can interact with drive() method no matter what type of vehicle is used. 
+Further, I have created some Concrete Commands , which are `VehicleCreationCommand` and `UpdateSoftwareCommand`.
+This two concrete commands are responsible for encapsulating the logic of creating each vehicle and consequently updating software of a certain vehicle.
+```java
+ public VehicleCreationCommand(VehicleCreationFacade facade, String type, String category) {
+        this.facade = facade;
+        this.type = type;
+        this.category = category;
+        }
+
+@Override
+public void execute() {
+        switch (category.toLowerCase()) {
+        case "car":
+        createdVehicle = createCar();
+        break;
+        case "truck":
+        createdVehicle = createTruck();
+        break;
+        case "motorcycle":
+        createdVehicle = createMotorcycle();
+        break;
+default:
+        throw new IllegalArgumentException("Unknown category: " + category);
+        }
+        System.out.println(type + " " + category + " created: " + createdVehicle);
+        }
+```     
+Implementing this pattern, especially using `VehicleCreationCommand` class, the creation proccess becomes much easier. 
+It separates the request for creation from the details of how objects are instantiated and managed.
+The client now can much easier create vehicles, without knowing exaclty which classes are involved.
+The same was done for updating software
+
 ```java
 public class CarAdapter implements VehicleAdapter {
     private Car car;
