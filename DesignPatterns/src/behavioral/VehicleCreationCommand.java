@@ -1,6 +1,7 @@
 package behavioral;
 
 import domain.Vehicle;
+import domain.VehicleRegistry;
 import facade.VehicleCreationFacade;
 
 public class VehicleCreationCommand implements Command {
@@ -31,6 +32,7 @@ public class VehicleCreationCommand implements Command {
                 throw new IllegalArgumentException("Unknown category: " + category);
         }
         System.out.println(type + " " + category + " created: " + createdVehicle);
+       // VehicleRegistry.getInstance().registerVehicle(createdVehicle);
     }
 
     private Vehicle createCar() {

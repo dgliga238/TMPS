@@ -1,6 +1,8 @@
 package client;
 
 import adapters.CarAdapter;
+import behavioral.Command;
+import behavioral.UpdateSoftwareCommand;
 import behavioral.VehicleCommandInvoker;
 import behavioral.VehicleCreationCommand;
 import decorators.GpsDecorator;
@@ -35,12 +37,16 @@ public class Main {
 
 
         VehicleCreationFacade menu = new VehicleCreationFacade();
-        VehicleCommandInvoker invoker = new VehicleCommandInvoker();
 
         VehicleCreationCommand createEconomyCar = new VehicleCreationCommand(menu, "economy", "car");
-        invoker.addCommand(createEconomyCar);
         VehicleCreationCommand createLuxuryTruck = new VehicleCreationCommand(menu, "luxury", "truck");
+        UpdateSoftwareCommand softwareUpdateCommand = new UpdateSoftwareCommand("Toyota Corolla");
+
+        VehicleCommandInvoker invoker = new VehicleCommandInvoker();
+
+        invoker.addCommand(createEconomyCar);
         invoker.addCommand(createLuxuryTruck);
+        invoker.addCommand(softwareUpdateCommand);
 
         invoker.executeCommands();
 

@@ -123,6 +123,28 @@ This class is responsible for managing commands and executing when needed. It si
 The client just adds the commands he need in order and then calls the function to execute them all.
 This feature is very useful when working with a complex, big system. Also., any new command can be added to the invoker without changing teh system , which emphasize the Open/Close Principle.
 
+```java
+VehicleCreationFacade menu = new VehicleCreationFacade();
+
+        VehicleCreationCommand createEconomyCar = new VehicleCreationCommand(menu, "economy", "car");
+        VehicleCreationCommand createLuxuryTruck = new VehicleCreationCommand(menu, "luxury", "truck");
+        UpdateSoftwareCommand softwareUpdateCommand = new UpdateSoftwareCommand("Toyota Corolla");
+
+        VehicleCommandInvoker invoker = new VehicleCommandInvoker();
+
+        invoker.addCommand(createEconomyCar);
+        invoker.addCommand(createLuxuryTruck);
+        invoker.addCommand(softwareUpdateCommand);
+
+        invoker.executeCommands();
+   ```
+
+
+
+The client interacts with the command objects in a decoupled manner, without needing to know the specifics of how the tasks are executed. 
+Instead, the client creates command objects, configures them with the necessary parameters, and passes them to the Invoker to execute the tasks. 
+The client is only responsible for initiating the requests and does not handle the actual execution details.
+
 ## Conclusions
 
 By using the Command pattern in the vehicle management system:
