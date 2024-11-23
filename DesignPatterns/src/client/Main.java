@@ -1,6 +1,8 @@
 package client;
 
 import adapters.CarAdapter;
+import behavioral.VehicleCommandInvoker;
+import behavioral.VehicleCreationCommand;
 import decorators.GpsDecorator;
 import domain.Vehicle;
 import domain.VehicleAdapter;
@@ -19,6 +21,7 @@ public class Main {
         VehicleAdapter carAdapter = new CarAdapter(myCar);
         carAdapter.drive();
 
+
         Vehicle car = new Car("Lexus");
         Vehicle decoratedCar = new GpsDecorator(car);
         decoratedCar.assemble();
@@ -29,5 +32,17 @@ public class Main {
         Vehicle luxuryTruck = vehicleFacade.createLuxuryTruck();
         economyCar.assemble();
         luxuryTruck.assemble();
+
+
+        VehicleCreationFacade menu = new VehicleCreationFacade();
+        VehicleCommandInvoker invoker = new VehicleCommandInvoker();
+
+        VehicleCreationCommand createEconomyCar = new VehicleCreationCommand(menu, "economy", "car");
+        invoker.addCommand(createEconomyCar);
+        VehicleCreationCommand createLuxuryTruck = new VehicleCreationCommand(menu, "luxury", "truck");
+        invoker.addCommand(createLuxuryTruck);
+
+        invoker.executeCommands();
+
     }
 }

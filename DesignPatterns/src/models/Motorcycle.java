@@ -15,7 +15,6 @@ public class Motorcycle implements Vehicle {
         System.out.println("Assembling a " + category + " Motorcycle.");
     }
 
-
     @Override
     public String toString() {
         return category + " " + model;

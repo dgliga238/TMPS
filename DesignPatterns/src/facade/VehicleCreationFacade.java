@@ -15,7 +15,6 @@ public class VehicleCreationFacade {
     public Vehicle createEconomyCar() {
         return economyFactory.createCar();
     }
-
     public Vehicle createStandardCar() {
         return standardFactory.createCar();
     }
